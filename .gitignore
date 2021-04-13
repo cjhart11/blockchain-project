@@ -1,5 +1,7 @@
 .DS_Store
 /node_modules
 /medicaldapp/node_modules
-/build
 hardhat.config.js
+/build/
+/medicaldapp/build/
+/cache/
