@@ -31,11 +31,15 @@ contract PrescriptionFactory is Ownable {
     mapping (uint => address) public prescriptionToOwner;
     mapping (address => uint) ownerPrescriptionCount;//maybe unnecessary
 
-    function _createPrescription(string memory _name, uint _quantity) internal {
-        uint id = prescriptions.push(Prescription(_name, _quantity, now, "origin", "destination", "shipped", msg.sender)) - 1;
+    function _createPrescription(string memory _name, uint _quantity, string memory _origin, string memory  _destination, string memory  _status) internal {
+        uint id = prescriptions.push(Prescription(_name, _quantity, now, _origin, _destination, _status, msg.sender)) - 1;
         prescriptionToOwner[id] = msg.sender;
         ownerPrescriptionCount[msg.sender] = ownerPrescriptionCount[msg.sender].add(1);
         emit NewPrescription(id, _name, _quantity);
+    }
+
+    function createPrescriptionAll(string memory _name, uint _quantity, string memory _origin, string memory _destination, string memory _status) public {
+        _createPrescription(_name, _quantity, _origin, _destination, _status);
     }
 
 }
