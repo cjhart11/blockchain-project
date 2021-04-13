@@ -68,7 +68,7 @@ describe("Cryptoprescription", function () {
     });
 
     describe("Two-step transfer scenario", async () => {
-        it("should approve and then transfer a zombie when the approved address calls transferFrom", async () => {
+        it("should approve and then transfer a prescription when the approved address calls transferFrom", async () => {
             const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
             const prescriptionId = 0;
             await CZInstance.approve(bob.address, prescriptionId);
@@ -77,13 +77,29 @@ describe("Cryptoprescription", function () {
             expect(newOwner).to.equal(bob.address);
         })
 
-        it("should approve and then transfer a zombie when the owner calls transferFrom", async () => {
+        it("should approve and then transfer a prescription when the owner calls transferFrom", async () => {
             const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
             const prescriptionId = 0;
             await CZInstance.approve(bob.address, prescriptionId);
             await CZInstance.transferFrom(alice.address, bob.address, prescriptionId);
             const newOwner = await CZInstance.ownerOf([prescriptionId]);
             expect(newOwner).to.equal(bob.address);
+        })
+    })
+
+    describe("querying scenarios", async () => {
+        it("should return the address of owner of prescription given the prescription id", async () => {
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            const owner = await CZInstance.ownerOf([prescriptionId]);
+            expect(owner).to.equal(alice.address);
+        })
+
+        it("should return the name of the prescription give the prescription id" , async () => {
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            const name = await CZInstance.findWithId(prescriptionId);
+            expect(name).to.equal(prescriptionNames[0]);
         })
     })
 

@@ -328,8 +328,8 @@
       ]
     },
     "/home/kongleochi/IdeaProjects/blockchain-project/contracts/prescriptionfactory.sol": {
-      "lastModificationDate": 1618335733806,
-      "contentHash": "69a0467ecae90c31ae6e30ad55c3520c",
+      "lastModificationDate": 1618337331573,
+      "contentHash": "153de77ef6c990d28908a8353dd312c4",
       "sourceName": "contracts/prescriptionfactory.sol",
       "solcConfig": {
         "version": "0.5.1",
@@ -469,8 +469,8 @@
       ]
     },
     "/home/kongleochi/IdeaProjects/blockchain-project/contracts/prescriptionquery.sol": {
-      "lastModificationDate": 1618332222774,
-      "contentHash": "8614ce8dcd48293e58fa5ccec6d6977a",
+      "lastModificationDate": 1618337317262,
+      "contentHash": "9775eab5bbe8b262e782848d0d797968",
       "sourceName": "contracts/prescriptionquery.sol",
       "solcConfig": {
         "version": "0.5.1",

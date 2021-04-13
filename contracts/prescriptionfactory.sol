@@ -42,4 +42,8 @@ contract PrescriptionFactory is Ownable {
         _createPrescription(_name, _quantity, _origin, _destination, _status);
     }
 
+    function findWithId(uint256 _tokenId) external view returns (string memory) {
+        return prescriptions[_tokenId].name;// not sure if this is correct
+    }
+
 }

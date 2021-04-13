@@ -11,10 +11,6 @@ contract PrescriptionQuery is PrescriptionOwnership{
         return ownerPrescriptionCount[_owner];
     }
 
-    function findWithId(uint256 _tokenId) external view returns (string memory) {
-        return prescriptions[_tokenId].name;// not sure if this is correct
-    }
-
     function _transfer(address _from, address _to, uint256 _tokenId) private {
         ownerPrescriptionCount[_to] = ownerPrescriptionCount[_to].add(1);
         ownerPrescriptionCount[msg.sender] = ownerPrescriptionCount[msg.sender].sub(1);
