@@ -16,7 +16,7 @@ const provider = waffle.provider;
 // an async function.
 
 
-describe("Cryptozombies", function () {
+describe("Cryptoprescription", function () {
     // Mocha has four functions that let you hook into the the test runner's
     // lifecyle. These are: `before`, `beforeEach`, `after`, `afterEach`.
 
@@ -26,7 +26,7 @@ describe("Cryptozombies", function () {
     // A common pattern is to declare some variables, and assign them in the
     // `before` and `beforeEach` callbacks.
 
-    const zombieNames = ["Zombie 1", "Zombie 2"];
+    const prescriptionNames = ["product one", "product 2"];
     let CZ;
     let CZInstance;
     let alice;
@@ -39,82 +39,51 @@ describe("Cryptozombies", function () {
 
     beforeEach(async function () {
         [alice, bob] = await ethers.getSigners();
-        CZ = await ethers.getContractFactory("CryptoZombies");
+        CZ = await ethers.getContractFactory("CryptoPrescription");
         CZInstance = await CZ.deploy();
     });
 
 
     // You can nest describe calls to create subsections.
-    describe("Deployment and zombie creation", function () {
-        it("Should be able to create a new zombie", async () => {
-            await expect(CZInstance.createRandomZombie(zombieNames[0]))
-                .to.emit(CZInstance, 'NewZombie')
+    describe("Deployment and prescription creation", function () {
+        it("Should be able to create a new prescription", async () => {
+            await expect(CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped"))
+                .to.emit(CZInstance, 'NewPrescription')
                 //.withArgs(0, zombieNames[0], 8229335091878300);
-            const x = await CZInstance.zombies(0);
+            const x = await CZInstance.prescriptions(0);
             //console.log(x);
-            expect(x.name).to.equal(zombieNames[0]);
+            expect(x.name).to.equal(prescriptionNames[0]);
         });
-        it("should not allow user to create two zombies", async () => {
-            await CZInstance.createRandomZombie(zombieNames[0]);
-            await expect (CZInstance.createRandomZombie(zombieNames[1]))
-                .to.be.reverted;
-        })
     });
 
 
-    describe("Simple zombie ownership and transfer", function () {
-        it("should transfer a zombie", async () => {
-            const result = await CZInstance.createRandomZombie(zombieNames[0]);
-            const zombieId = 0;
-            await CZInstance.transferFrom(alice.address, bob.address, zombieId);
-            const newOwner = await CZInstance.ownerOf(zombieId);
+    describe("Simple prescription ownership and transfer", function () {
+        it("should transfer a prescription", async () => {
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            await CZInstance.transferFrom(alice.address, bob.address, prescriptionId);
+            const newOwner = await CZInstance.ownerOf(prescriptionId);
             expect(newOwner).to.equal(bob.address);
         })
     });
 
     describe("Two-step transfer scenario", async () => {
         it("should approve and then transfer a zombie when the approved address calls transferFrom", async () => {
-            const result = await CZInstance.createRandomZombie(zombieNames[0]);
-            const zombieId = 0;
-            await CZInstance.approve(bob.address, zombieId);
-            await CZInstance.connect(bob).transferFrom(alice.address, bob.address, zombieId);
-            const newOwner = await CZInstance.ownerOf(zombieId);
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            await CZInstance.approve(bob.address, prescriptionId);
+            await CZInstance.connect(bob).transferFrom(alice.address, bob.address, prescriptionId);
+            const newOwner = await CZInstance.ownerOf(prescriptionId);
             expect(newOwner).to.equal(bob.address);
         })
 
         it("should approve and then transfer a zombie when the owner calls transferFrom", async () => {
-            const result = await CZInstance.createRandomZombie(zombieNames[0]);
-            const zombieId = 0;
-            await CZInstance.approve(bob.address, zombieId);
-            await CZInstance.transferFrom(alice.address, bob.address, zombieId);
-            const newOwner = await CZInstance.ownerOf(zombieId);
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            await CZInstance.approve(bob.address, prescriptionId);
+            await CZInstance.transferFrom(alice.address, bob.address, prescriptionId);
+            const newOwner = await CZInstance.ownerOf([prescriptionId]);
             expect(newOwner).to.equal(bob.address);
-        })
-    })
-
-     describe("attack scenarios", async () => {
-         it("zombie should be able to attack another zombie", async () => {
-            let result;
-
-            result = await CZInstance.setCooldownTime(0);  // so we don't have to wait
-            result = await CZInstance.createRandomZombie(zombieNames[0]);
-            const firstZombieId = 0;
-            result = await CZInstance.connect(bob).createRandomZombie(zombieNames[1]);
-            const secondZombieId = 1;
-            await CZInstance.attack(firstZombieId, secondZombieId);
-            const z = await CZInstance.zombies(0);
-            //console.log(z);
-            expect(z[4]+z[5]).to.equal(1);
-        })
-
-        it("should be able to feed on a cryptokitty and create a new zombie", async () => {
-            let result;
-            result = await CZInstance.setCooldownTime(0);  // so we don't have to wait
-            result = await CZInstance.createRandomZombie(zombieNames[0]);
-            const firstZombieId = 0;
-            await CZInstance.feedOnKitty(firstZombieId, 15);
-            const newZombie = await CZInstance.zombies(1);
-            expect (newZombie[0]).to.equal("NoName");
         })
     })
 
