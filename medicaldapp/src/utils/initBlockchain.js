@@ -42,10 +42,14 @@ const initBlockchain = async () => {
     // initialize shadow contract
 
     let CZ = null;
-    console.log("READ ABI");
-    const fs = require('fs');
-    const abi = JSON.parse(fs.readFileSync('./artifacts/contracts/PrescriptionFactory.sol/PrescriptionFactory.json', 'utf8'));
-    CZ = new ethers.Contract('0x49C6D5564dAaD36F05df0b0eCA040577c47DDb5e', abi, signer);
+    let fs = require("../CryptoPrescription.json");
+    let jsonFile = fs;
+    console.log(JSON.stringify(jsonFile));
+    let parsed = JSON.parse(JSON.stringify(jsonFile));
+
+    let abi = parsed.abi;
+
+    CZ = new ethers.Contract('0x1b975263A408Fa71Ea69515e751B4151A9F0573f', abi, signer);
     // put state data into the REDUX store for easy access from other pages and components
 
     let data = { provider, signer, CZ, userAddress };

@@ -9,15 +9,9 @@ async function main() {
 
     console.log("Account balance:", (await deployer.getBalance()).toString());
 
-    const CZF = await ethers.getContractFactory("PrescriptionFactory");
-    const CZ = await CZF.deploy();
-
-    console.log("CryptoPrescription contract address:", CZ.address);
-
-    const fs = require('fs');
-    const contract =
-    JSON.parse(fs.readFileSync('./artifacts/contracts/PrescriptionFactory.sol/PrescriptionFactory.json', 'utf8'));
-    console.log(JSON.stringify(contract.abi));
+     const CZF = await ethers.getContractFactory("CryptoPrescription");
+     const CZ = await CZF.deploy();
+     console.log("CryptoPrescription contract address:", CZ.address);
 }
 
 main()
