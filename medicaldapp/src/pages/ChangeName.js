@@ -1,3 +1,4 @@
+/*
 //
 // This is the "Change Name" page
 //
@@ -110,3 +111,4 @@ class ChangeName extends Component {
 }
 
 export default connect(mapStateToProps)(ChangeName);
+*/

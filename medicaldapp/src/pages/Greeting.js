@@ -14,18 +14,13 @@ class Greeting extends Component {
         <br />
         <h2 style={{ color: "DarkRed", textAlign: "center" }}>
           {" "}
-          Welcome to the CSU <b> CryptoZombies</b> game!
+          Welcome to Jon and Conors <b> Blockchain</b> project
         </h2>
         <br />
-        <img src="static/images/zombieLoser2.jpg" style={imgStyle} width="400px" alt="Zombie rising from grave" />
+        <img src="static/images/medical-drug-icon.jpg" style={imgStyle} width="400px" alt="Medical icon" />
         <br /> <br />
         <p style={{ textAlign: "center" }}>
-          This Colorado State University CS458 blockchain game allows you to create one original zombie
-          on the Ethereum blockchain.
-          <br /> Once created, your zombie can eat cryptokitties to create new
-          zombies.
-          <br /> Additionally, your zombie can attack other zombies (you have a
-          70% chance of winning).
+          This project allows for the creation of a prescription
           <br /> <br /> To get started, select a button from the menu bar above.
         </p>
       </div>

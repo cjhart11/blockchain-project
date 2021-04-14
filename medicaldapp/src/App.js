@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import initBlockchain from "./utils/initBlockchain";
-import getZombieCount from "./utils/getZombieCount";
-
 import { HashRouter, Route } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import { Provider } from "react-redux";
@@ -9,15 +7,13 @@ import { Provider } from "react-redux";
 import TopBar from "./components/TopBar";
 
 import Greeting from "./pages/Greeting";
-import MyZombieInventory from "./pages/MyZombieInventory";
-import ZombieInventory from "./pages/ZombieInventory";
-import AttackZombie from "./pages/AttackZombie";
-import FeedOnKitty from "./pages/FeedOnKitty";
+import MyPrescriptionInventory from "./pages/MyPrescriptionInventory";
+import getPrescriptionCount from "./utils/getPrescriptionCount"
+import PrescriptionInventory from "./pages/PrescriptionInventory"
+//import TransferZombie from "./pages/TransferZombie";
 import ChangeName from "./pages/ChangeName";
-import LevelUp from "./pages/LevelUp";
 
 import store from "./redux/store";
-import TransferZombie from "./pages/TransferZombie";
 
 //
 //  This is the main application page; routing is handled to render other pages in the application
@@ -36,7 +32,7 @@ class App extends Component {
     componentDidMount = async () => {
       try {
           const CZInfo = await initBlockchain(); // from utils directory;  connect to provider and to metamask or other signer
-          await getZombieCount(CZInfo.CZ, CZInfo.userAddress); // get user count and total count of zombies
+          await getPrescriptionCount(CZInfo.CZ, CZInfo.userAddress); // get user count and total count of zombies
       } catch (error) {
           // Catch any errors for any of the above operations.
           alert(`Failed to load provider, signer, or contract. Check console for details.`);
@@ -65,20 +61,14 @@ class App extends Component {
               <Route exact path="/" component={Greeting} />
               <Route
                 exact
-                path="/myZombieInventory"
-                component={MyZombieInventory}
+                path="/myPrescriptionInventory"
+                component={MyPrescriptionInventory}
               />
               <Route
                 exact
-                path="/ZombieInventory"
-                component={ZombieInventory}
+                path="/PrescriptionInventory"
+                component={PrescriptionInventory}
               />
-              {/* routes used in zombie action modal */}
-              <Route exact path="/AttackZombie" component={AttackZombie} />
-              <Route exact path="/FeedOnKitty" component={FeedOnKitty} />
-              <Route exact path="/ChangeName" component={ChangeName} />
-              <Route exact path="/LevelUp" component={LevelUp} />
-              <Route exact path="/TransferZombie" component={TransferZombie} />
             </div>
           </Container>
         </HashRouter>

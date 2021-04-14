@@ -1,3 +1,4 @@
+/*
 //
 // This is the "Transfer Zombie" page
 //
@@ -110,3 +111,4 @@ class TransferZombie extends Component {
 }
 
 export default connect(mapStateToProps)(TransferZombie);
+*/
