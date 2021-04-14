@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import getZombieCount from "../utils/getZombieCount";
 import { connect } from "react-redux";
+import logo from '../images/bottle_of_pills.png';
 
 import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
 
@@ -54,46 +55,72 @@ class CreatePrescription extends Component {
 
 
   render() {
-    let createDisabled = (this.props.userItemCount !== 0);
       return (
       <Modal
         trigger={
-          <Button primary disabled={createDisabled} onClick={this.handleOpen}>
-            Add Item
+          <Button primary onClick={this.handleOpen}>
+            Add Prescription
           </Button>
         }
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >
-        <Header icon="browser" content="Add a new Item" />
+        <Header icon="browser" content="Add a new prescription for tracking" />
         <Modal.Content>
-          <img src="static/images/medical-drug-icon.jpg" alt="pill icon" /><Header>Be sure to give all of the information</Header>
+          <img src={logo} alt="pill icon" /><Header>Please give all of the information</Header>
           <br /> <br />
           <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
             <Form.Field>
               <label>Prescription Name</label>
-              <input
-                placeholder="Name"
-                onChange={event =>
-                  this.setState({
-                    value: event.target.value
-                  })
-                }
-              />
+                <input
+                    placeholder="Name"
+                    onChange={event =>
+                        this.setState({
+                            value: event.target.value
+                        })
+                    }
+                />
               <label>Quantity</label>
-              <input
-                placeholder="Quantity"
-                onChange={event =>
-                    this.setState({
-                        value: event.target.value
-                    })
-                }
+                <input
+                    placeholder="Quantity"
+                    onChange={event =>
+                        this.setState({
+                            value: event.target.value
+                        })
+                    }
+              />
+              <label>Origin</label>
+                <input
+                    placeholder="Origin"
+                    onChange={event =>
+                        this.setState({
+                            value: event.target.value
+                        })
+                    }
+              />
+              <label>Destination</label>
+                <input
+                    placeholder="Destination"
+                    onChange={event =>
+                        this.setState({
+                            value: event.target.value
+                        })
+                    }
+              />
+              <label>Status</label>
+                <input
+                    placeholder="Status"
+                    onChange={event =>
+                        this.setState({
+                            value: event.target.value
+                        })
+                    }
               />
             </Form.Field>
             <Message error header="Oops!" content={this.state.errorMessage} />
             <Button primary type="submit" loading={this.state.loading}>
               <Icon name="check" />
-              Create Zombie
+              Create Prescription
             </Button>
             <hr />
             <h2>{this.state.message}</h2>
