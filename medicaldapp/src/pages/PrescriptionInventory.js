@@ -49,7 +49,7 @@ class PrescriptionInventory extends Component {
       i++
     ) {
       try {
-        let metaData = await this.props.CZ.prescriptions(i);
+        let metaData = await this.props.CZ.Prescriptions(i);
         zList.push(metaData);
         let myOwner = await this.props.CZ.prescriptionToOwner(i);
         zOwner.push(myOwner);
