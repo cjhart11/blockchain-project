@@ -30,7 +30,7 @@ contract PrescriptionFactory is Ownable {
     Prescription[] public prescriptions;
 
     mapping (uint => address) public prescriptionToOwner;
-    mapping (address => uint) ownerPrescriptionCount;//maybe unnecessary
+    mapping (address => uint) ownerPrescriptionCount;
 
     function _createPrescription(string memory _name, uint _quantity, string memory _origin, string memory  _destination, string memory  _status) internal {
         uint id = prescriptions.push(Prescription(_name, _quantity, now, _origin, _destination, _status, msg.sender)) - 1;
@@ -45,6 +45,18 @@ contract PrescriptionFactory is Ownable {
 
     function findWithId(uint256 _tokenId) external view returns (string memory) {
         return prescriptions[_tokenId].name;// not sure if this is correct
+    }
+
+    function getPrescriptionsByOwner(address _owner) external view returns(uint[] memory) {
+        uint[] memory result = new uint[](ownerPrescriptionCount[_owner]);
+        uint counter = 0;
+        for (uint i = 0; i < prescriptions.length; i++) {
+            if (prescriptionToOwner[i] == _owner) {
+                result[counter] = i;
+                counter++;
+            }
+        }
+        return result;
     }
 
 }

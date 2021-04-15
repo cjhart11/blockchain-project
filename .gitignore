@@ -2,7 +2,6 @@
 /node_modules
 /medicaldapp/node_modules
 hardhat.config.js
-/build/
 /medicaldapp/build/
 /cache/
 /.idea/

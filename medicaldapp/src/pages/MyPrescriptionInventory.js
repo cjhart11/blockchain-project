@@ -42,7 +42,7 @@ class MyPrescriptionInventory extends Component {
       try {
         let z = myPrescriptions[i];
         let prescription = await this.props.CZ.prescriptions(z);
-        let myDate = new Date(prescription.readyTime * 1000).toLocaleString();
+        //let myDate = new Date(prescription.readyTime * 1000).toLocaleString();
         prescriptionTable.push(
           <PrescriptionCard
             key={z}

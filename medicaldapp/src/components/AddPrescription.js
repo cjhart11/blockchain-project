@@ -18,6 +18,9 @@ class CreatePrescription extends Component {
     modalOpen: false,
     name: "",
     quantity: "",
+    origin: "",
+    destination: "",
+    status: "",
     message: "",
     errorMessage: "",
     loading: false
@@ -35,7 +38,7 @@ class CreatePrescription extends Component {
       message: "waiting for blockchain transaction to complete..."
     });
     try {
-      await this.props.CZ.createPrescription(this.state.name, this.state.quantity)
+      await this.props.CZ.createPrescriptionAll(this.state.name, this.state.quantity, this.state.origin, this.state.destination, this.state.status);
       this.setState({
         loading: false,
         message: "You have created a prescription"
@@ -52,11 +55,10 @@ class CreatePrescription extends Component {
 
 
   render() {
-    let createDisabled = (this.props.userItemCount !== 0);
       return (
       <Modal
         trigger={
-          <Button primary disabled={createDisabled} onClick={this.handleOpen}>
+          <Button primary onClick={this.handleOpen}>
             Add Item
           </Button>
         }
@@ -86,6 +88,33 @@ class CreatePrescription extends Component {
                         value: event.target.value
                     })
                 }
+              />
+              <label>Origin</label>
+              <input
+                  placeholder="Origin"
+                  onChange={event =>
+                      this.setState({
+                        value: event.target.value
+                      })
+                  }
+              />
+              <label>Destination</label>
+              <input
+                  placeholder="Destination"
+                  onChange={event =>
+                      this.setState({
+                        value: event.target.value
+                      })
+                  }
+              />
+              <label>Status</label>
+              <input
+                  placeholder="Status"
+                  onChange={event =>
+                      this.setState({
+                        value: event.target.value
+                      })
+                  }
               />
             </Form.Field>
             <Message error header="Oops!" content={this.state.errorMessage} />
