@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
+import logo from '../images/medicaldrugicon.jpg';
 
 class PrescriptionCardContent extends Component {
   truncate = (text, startChars, endChars) => {
@@ -12,18 +13,22 @@ class PrescriptionCardContent extends Component {
   };
 
   render() {
+  let shipDate = new Date(0);
+  shipDate.setSeconds(this.props.prescription.prescriptionShipDate);
+  let timeString = shipDate.toString().substr(0, 25);
+  let ownerString = this.props.prescription.prescriptionOwner.substr(0,10) + "......" + this.props.prescription.prescriptionOwner.substr(30,this.props.prescription.prescriptionOwner.length);
     return (
       <Card.Content>
         <Card.Header>
-          Prescription Name: <b>{this.props.prescription.name}</b>
+          Prescription Name: <b>{this.props.prescription.prescriptionName.toString()}</b>
         </Card.Header>
         <Card.Description>
-          Quantity: {this.props.prescription.prescriptionQuantity} <br />
-          ShipDate: {this.props.prescription.shipDate} <br />
-          Origin: {this.props.prescription.origin} <br />
-          Destination: {this.props.prescription.destination} <br />
-          Status: {this.props.prescription.status} <br />
-          Owner: {this.props.userAddress} <br />
+          Quantity: {this.props.prescription.prescriptionQuantity.toString()} <br />
+          ShipDate: {timeString} <br />
+          Origin: {this.props.prescription.prescriptionOrigin} <br />
+          Destination: {this.props.prescription.prescriptionDestination} <br />
+          Status: {this.props.prescription.prescriptionStatus} <br />
+          Owner: {ownerString} <br />
         </Card.Description>
       </Card.Content>
     );

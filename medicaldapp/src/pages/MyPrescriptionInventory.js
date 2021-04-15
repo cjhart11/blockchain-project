@@ -33,6 +33,12 @@ class MyPrescriptionInventory extends Component {
   };
   makePrescriptionCards = async () => {
     const myPrescriptions = await this.props.CZ.getPrescriptionsByOwner(this.props.userAddress);
+    console.log("Getting Prescriptions by owner");
+    let loopi = 0;
+    while (loopi < myPrescriptions.length){
+        console.log(myPrescriptions[i]);
+        loopi++;
+    }
     let prescriptionTable = [];
     for (
       var i = this.state.activePage * 9 - 9;
@@ -43,17 +49,17 @@ class MyPrescriptionInventory extends Component {
         let z = myPrescriptions[i];
         let prescription = await this.props.CZ.prescriptions(z);
         //let myDate = new Date(prescription.readyTime * 1000).toLocaleString();
+        console.log(prescription);
         prescriptionTable.push(
           <PrescriptionCard
             key={z}
-            prescriptionId={z.toString()}
             prescriptionName={prescription.name}
             prescriptionQuantity={prescription.quantity}
             prescriptionShipDate={prescription.shipDate}
             prescriptionOrigin={prescription.origin}
             prescriptionDestination={prescription.destination}
             prescriptionStatus={prescription.status}
-            prescriptionOwner={this.props.userAddress}
+            prescriptionOwner={prescription.owner}
             myOwner={true}
           />
         );

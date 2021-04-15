@@ -44,7 +44,6 @@ const initBlockchain = async () => {
     let CZ = null;
     let fs = require("../CryptoPrescription.json");
     let jsonFile = fs;
-    console.log(JSON.stringify(jsonFile));
     let parsed = JSON.parse(JSON.stringify(jsonFile));
 
     let abi = parsed.abi;

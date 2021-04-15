@@ -31,6 +31,16 @@ class TopBar extends Component {
               <Button primary>Show My Prescriptions</Button>
             </Link>
           </Menu.Item>
+            <Menu.Item>
+                <Link to={{ pathname: "/PrescriptionInventory" }}>
+                    <Button primary>Show All Prescriptions</Button>
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to={{ pathname: "/" }}>
+                    <Button primary>Main Page</Button>
+                </Link>
+            </Menu.Item>
         </Menu>
         Your account address: {this.props.userAddress}
         <br />

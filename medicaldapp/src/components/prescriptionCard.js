@@ -27,25 +27,13 @@ class PrescriptionCard extends Component {
   render() {
     // define the button labels used in <ActionButton> further on down in the code
 
-    const changeNameButton = (
-      <div>
-        Change Name <br /> (level > 2){" "}
-      </div>
-    );
-    const transferButton = (
-        <div>
-          Transfer Prescription
-          <br />
-        </div>
-    );
-
     // create the JSX depending on whether you own the Prescription or not
 
     if (this.props.myOwner)
       // Owner prescription: render card and tooltip and modal for prescription actions
 
       return (
-        <Card style={{ backgroundColor: "LightYellow" }} raised>
+        <Card style={{ backgroundColor: "LightGreen" }} raised>
           <ReactTooltip delayShow={400} />
 
           <a
@@ -63,19 +51,6 @@ class PrescriptionCard extends Component {
               icon="browser"
               content="The choices for this prescription"
             />
-
-              <ActionButton
-                pathname="/ChangeName"
-                buttonLabel={changeNameButton}
-                data={this.props}
-              />
-              <ActionButton
-                  pathname="/TransferPrescription"
-                  buttonLabel={transferButton}
-                  data={this.props}
-              />
-
-
             <Modal.Actions>
               <Button color="red" onClick={this.handleClose} inverted>
                 <Icon name="cancel" /> Close
