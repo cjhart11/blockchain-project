@@ -34,15 +34,15 @@ class PrescriptionCard extends Component {
     );
     const transferButton = (
         <div>
-          Transfer Zombie
+          Transfer Prescription
           <br />
         </div>
     );
 
-    // create the JSX depending on whether you own the zombie or not
+    // create the JSX depending on whether you own the Prescription or not
 
     if (this.props.myOwner)
-      // Owner zombie: render card and tooltip and modal for zombie actions
+      // Owner prescription: render card and tooltip and modal for prescription actions
 
       return (
         <Card style={{ backgroundColor: "LightYellow" }} raised>
@@ -67,7 +67,6 @@ class PrescriptionCard extends Component {
               <ActionButton
                 pathname="/ChangeName"
                 buttonLabel={changeNameButton}
-                disableMe={this.props.zombieLevel <= 2}
                 data={this.props}
               />
               <ActionButton

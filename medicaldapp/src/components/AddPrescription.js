@@ -13,8 +13,6 @@ function mapStateToProps(state) {
 }
 
 
-// Create a new Zombie
-
 class CreatePrescription extends Component {
   state = {
     modalOpen: false,

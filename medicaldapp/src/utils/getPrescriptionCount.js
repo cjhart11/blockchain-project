@@ -11,16 +11,14 @@ function prescriptionCount(data) {
 }
 
 //
-//  set up the blockchain shadow contract, user address, and user zombie count.  Put into redux store.
+//  set up the blockchain shadow contract, user address, and user prescription count.  Put into redux store.
 //
 
 async function getPrescriptionCount(CZ, userAddress) {
-  // get number of zombies owned by the user account
+  // get number of prescriptions owned by the user account
   let userPrescriptionCount = +(await CZ.balanceOf(userAddress));  // + convert a string to an integer
 
-  // do a binary search to estimate total zombie count.
-  // It is a real shame that the Cryptozombies contract doesn't totally comply with ERC720 to include a function
-  // that returns totalZombieount.
+  // do a binary search to estimate total number of prescriptions.
 
   var high = 8192;
   var low = 0;
@@ -41,7 +39,7 @@ async function getPrescriptionCount(CZ, userAddress) {
 
   let data = {
     totalPrescriptionCount: Math.max(low-1, 1),   // from binary search
-    userPrescriptionCount          //EC7 shorthand for totalZombieCount:totalZombieCount because of same variable name
+    userPrescriptionCount          //EC7 shorthand for totalPrescriptionCount:totalPrescriptionCount because of same variable name
   };
 
   store.dispatch(prescriptionCount(data));

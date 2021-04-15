@@ -5,3 +5,4 @@ hardhat.config.js
 /build/
 /medicaldapp/build/
 /cache/
+/.idea/

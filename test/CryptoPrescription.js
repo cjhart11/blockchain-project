@@ -49,7 +49,6 @@ describe("Cryptoprescription", function () {
         it("Should be able to create a new prescription", async () => {
             await expect(CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped"))
                 .to.emit(CZInstance, 'NewPrescription')
-                //.withArgs(0, zombieNames[0], 8229335091878300);
             const x = await CZInstance.prescriptions(0);
             //console.log(x);
             expect(x.name).to.equal(prescriptionNames[0]);

@@ -17,25 +17,26 @@ class ActionButton extends Component {
   };
 
   render() {
-    const zombieData = {
-      zombieName: this.truncate(this.props.data.zombieName, 8, 8),
-      zombieId: this.props.data.zombieId,
-      zombieDNA: this.props.data.zombieDNA,
-      zombieLevel: this.props.data.zombieLevel,
-      zombieReadyTime: this.props.data.zombieReadyTime,
-      zombieWinCount: this.props.data.zombieWinCount,
-      zombieLossCount: this.props.data.zombieLossCount
+    const prescriptionData = {
+      prescriptionName: this.truncate(this.props.data.prescriptionName, 8, 8),
+      prescriptionId: this.props.data.prescriptionId,
+      PrescriptionQuantity: this.props.data.prescriptionQuantity,
+      prescriptionShipDate: this.props.data.prescriptionShipDate,
+      prescriptionOwner: this.props.data.prescriptionOwner,
+      prescriptionOrigin: this.props.data.prescriptionOrigin,
+      prescriptionDestination: this.props.data.prescriptionDestination,
+      prescriptionStatus: this.props.data.prescriptionStatus
     };
 
     const pathName = this.props.pathname;
     const buttonLabel = this.props.buttonLabel;
 
-    //console.log("button label", this.props.buttonLabel, pathName, zombieData);
+    //console.log("button label", this.props.buttonLabel, pathName, prescriptionData);
     return (
       <Link
         to={{
           pathname:  pathName ,
-          state:  zombieData
+          state:  prescriptionData
         }}
       >
         <Button primary disabled={this.props.disableMe}> {buttonLabel} </Button>
