@@ -57,7 +57,6 @@ class PrescriptionInventory extends Component {
         break;
       }
     }
-
     let prescriptionTable = [];
     for (let i = 0; i < zList.length; i++) {
       let myDate = new Date(zList[i].readyTime * 1000).toLocaleString();
@@ -70,7 +69,7 @@ class PrescriptionInventory extends Component {
             prescriptionOrigin={prescription.origin}
             prescriptionDestination={prescription.destination}
             prescriptionStatus={prescription.status}
-            prescriptionOwner={this.props.userAddress}
+            prescriptionOwner={prescription.owner.toString()}
             myOwner={true}
           />
         );

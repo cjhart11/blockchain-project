@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-//import getZombieCount from "../utils/getZombieCount";
 import { connect } from "react-redux";
 import logo from '../images/bottle_of_pills.png';
 
 import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
+import getPrescriptionCount from "../utils/getPrescriptionCount";
 
 function mapStateToProps(state) {
     return {
@@ -14,13 +14,14 @@ function mapStateToProps(state) {
 }
 
 
-// Create a new Zombie
-
 class CreatePrescription extends Component {
   state = {
     modalOpen: false,
     name: "",
-    quantity: "",
+    quantity: 0,
+    origin: "",
+    destination: "",
+    status: "",
     message: "",
     errorMessage: "",
     loading: false
@@ -38,12 +39,12 @@ class CreatePrescription extends Component {
       message: "waiting for blockchain transaction to complete..."
     });
     try {
-      await this.props.CZ.createPrescription(this.state.name, this.state.quantity)
+      await this.props.CZ.createPrescriptionAll(this.state.name, this.state.quantity, this.state.origin, this.state.destination, this.state.status);
       this.setState({
         loading: false,
         message: "You have created a prescription"
       });
-      //getZombieCount(this.props.CZ, this.props.userAddress);
+      //await getPrescriptionCount(this.props.CZ, this.props.userAddress);
     } catch (err) {
       this.setState({
         loading: false,
@@ -76,7 +77,7 @@ class CreatePrescription extends Component {
                     placeholder="Name"
                     onChange={event =>
                         this.setState({
-                            value: event.target.value
+                            name: event.target.value
                         })
                     }
                 />
@@ -85,7 +86,7 @@ class CreatePrescription extends Component {
                     placeholder="Quantity"
                     onChange={event =>
                         this.setState({
-                            value: event.target.value
+                            quantity: event.target.value
                         })
                     }
               />
@@ -94,7 +95,7 @@ class CreatePrescription extends Component {
                     placeholder="Origin"
                     onChange={event =>
                         this.setState({
-                            value: event.target.value
+                            origin: event.target.value
                         })
                     }
               />
@@ -103,7 +104,7 @@ class CreatePrescription extends Component {
                     placeholder="Destination"
                     onChange={event =>
                         this.setState({
-                            value: event.target.value
+                            destination: event.target.value
                         })
                     }
               />
@@ -112,7 +113,7 @@ class CreatePrescription extends Component {
                     placeholder="Status"
                     onChange={event =>
                         this.setState({
-                            value: event.target.value
+                            status: event.target.value
                         })
                     }
               />

@@ -44,12 +44,11 @@ const initBlockchain = async () => {
     let CZ = null;
     let fs = require("../CryptoPrescription.json");
     let jsonFile = fs;
-    console.log(JSON.stringify(jsonFile));
     let parsed = JSON.parse(JSON.stringify(jsonFile));
 
     let abi = parsed.abi;
 
-    CZ = new ethers.Contract('0x1b975263A408Fa71Ea69515e751B4151A9F0573f', abi, signer);
+    CZ = new ethers.Contract('0x1A1EF4f18CBd4F9C0Fd8b9246D2e8d519dB5e4d7', abi, signer);
     // put state data into the REDUX store for easy access from other pages and components
 
     let data = { provider, signer, CZ, userAddress };
