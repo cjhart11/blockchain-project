@@ -22,11 +22,10 @@ class TopBar extends Component {
   render() {
     return (
       <div>
-        <Menu style={{ marginTop: "10px", backgroundColor: "Salmon" }}>
+        <Menu style={{ marginTop: "10px", backgroundColor: "Green" }}>
           <Menu.Item>
             <AddPrescription />
           </Menu.Item>
-
           <Menu.Item>
             <Link to={{ pathname: "/myPrescriptionInventory" }}>
               <Button primary>Show My Prescriptions</Button>

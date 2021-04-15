@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import logo from '../images/medicaldrugicon.jpg';
 class Greeting extends Component {
   render() {
     const imgStyle = {
@@ -12,12 +12,12 @@ class Greeting extends Component {
     return (
       <div>
         <br />
-        <h2 style={{ color: "DarkRed", textAlign: "center" }}>
+        <h2 style={{ color: "Black", textAlign: "center" }}>
           {" "}
           Welcome to Jon and Conors <b> Blockchain</b> project
         </h2>
         <br />
-        <img src="static/images/medical-drug-icon.jpg" style={imgStyle} width="400px" alt="Medical icon" />
+        <img src={logo} style={imgStyle} width="400px" alt="Medical icon" />
         <br /> <br />
         <p style={{ textAlign: "center" }}>
           This project allows for the creation of a prescription
