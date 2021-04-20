@@ -22,10 +22,5 @@ main()
     });
 
 /*
-
 npx hardhat run --network rinkeby scripts/deploy.js
-Deploying contracts with the account: 0x4327D8b79AB0499F81dD801db4365CdC914d6f3f
-Account balance: 440862942468775582807
-CryptoPrescription contract address: 0xB11f26ad0bb7f4705F9eB116c224FFc323798695
-
  */
