@@ -36,7 +36,7 @@ class MyPrescriptionInventory extends Component {
     console.log("Getting Prescriptions by owner");
     let loopi = 0;
     while (loopi < myPrescriptions.length){
-        console.log(myPrescriptions[i]);
+        console.log(myPrescriptions[loopi]);
         loopi++;
     }
     let prescriptionTable = [];
@@ -53,6 +53,7 @@ class MyPrescriptionInventory extends Component {
         prescriptionTable.push(
           <PrescriptionCard
             key={z}
+            prescriptionId={prescription.pid}
             prescriptionName={prescription.name}
             prescriptionQuantity={prescription.quantity}
             prescriptionShipDate={prescription.shipDate}

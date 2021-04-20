@@ -63,6 +63,7 @@ class PrescriptionInventory extends Component {
       let prescription = zList[i];
         prescriptionTable.push(
           <PrescriptionCard
+            prescriptionId={prescription.pid}
             prescriptionName={prescription.name}
             prescriptionQuantity={prescription.quantity}
             prescriptionShipDate={prescription.shipDate}
