@@ -23,6 +23,7 @@ class PrescriptionCardContent extends Component {
           Prescription Name: <b>{this.props.prescription.prescriptionName.toString()}</b>
         </Card.Header>
         <Card.Description>
+          ID: {this.props.prescription.prescriptionId.toString()}<br />
           Quantity: {this.props.prescription.prescriptionQuantity.toString()} <br />
           ShipDate: {timeString} <br />
           Origin: {this.props.prescription.prescriptionOrigin} <br />

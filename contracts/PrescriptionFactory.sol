@@ -14,6 +14,7 @@ contract PrescriptionFactory is Ownable {
 
     struct Prescription {
         string name;
+        uint pid;
         uint quantity;
         uint shipDate;
         string origin;
@@ -33,7 +34,8 @@ contract PrescriptionFactory is Ownable {
     mapping (address => uint) ownerPrescriptionCount;
 
     function _createPrescription(string memory _name, uint _quantity, string memory _origin, string memory  _destination, string memory  _status) internal {
-        uint id = prescriptions.push(Prescription(_name, _quantity, now, _origin, _destination, _status, msg.sender)) - 1;
+        uint idCount = prescriptions.length;
+        uint id = prescriptions.push(Prescription(_name, idCount, _quantity, now, _origin, _destination, _status, msg.sender)) - 1;
         prescriptionToOwner[id] = msg.sender;
         ownerPrescriptionCount[msg.sender] = ownerPrescriptionCount[msg.sender].add(1);
         emit NewPrescription(id, _name, _quantity);
