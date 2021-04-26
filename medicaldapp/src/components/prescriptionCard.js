@@ -29,6 +29,12 @@ class PrescriptionCard extends Component {
 
     // create the JSX depending on whether you own the Prescription or not
 
+    const changePrescriptionButton = (
+        <div>
+          Change Prescription <br />
+        </div>
+    );
+
     if (this.props.myOwner)
       // Owner prescription: render card and tooltip and modal for prescription actions
 
@@ -49,9 +55,14 @@ class PrescriptionCard extends Component {
           <Modal open={this.state.modalOpen} onClose={this.handleClose}>
             <Header
               icon="browser"
-              content="The choices for this prescription"
+              content="Options for this prescription"
             />
             <Modal.Actions>
+              <ActionButton
+                  pathname="/UpdatePrescription"
+                  buttonLabel={changePrescriptionButton}
+                  data={this.props}
+              />
               <Button color="red" onClick={this.handleClose} inverted>
                 <Icon name="cancel" /> Close
               </Button>

@@ -11,7 +11,7 @@ import MyPrescriptionInventory from "./pages/MyPrescriptionInventory";
 import getPrescriptionCount from "./utils/getPrescriptionCount"
 import PrescriptionInventory from "./pages/PrescriptionInventory"
 //import TransferZombie from "./pages/TransferZombie";
-import ChangeName from "./pages/ChangeName";
+import UpdatePrescription from "./pages/UpdatePrescription";
 
 import store from "./redux/store";
 
@@ -59,16 +59,21 @@ class App extends Component {
             <TopBar state={this.state} />
             <div>
               <Route exact path="/" component={Greeting} />
-              <Route
-                exact
-                path="/myPrescriptionInventory"
-                component={MyPrescriptionInventory}
-              />
-              <Route
-                exact
-                path="/PrescriptionInventory"
-                component={PrescriptionInventory}
-              />
+                <Route
+                  exact
+                  path="/myPrescriptionInventory"
+                  component={MyPrescriptionInventory}
+                />
+                <Route
+                  exact
+                  path="/PrescriptionInventory"
+                  component={PrescriptionInventory}
+                />
+                <Route
+                    exact
+                    path="/UpdatePrescription"
+                    component={UpdatePrescription}
+                />
             </div>
           </Container>
         </HashRouter>
