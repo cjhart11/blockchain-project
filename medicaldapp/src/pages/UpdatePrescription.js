@@ -269,7 +269,7 @@ class UpdatePrescription extends Component {
           <hr />
         </Form>
         <h2>{this.state.message}</h2>
-        <Link to={{pathname: "/"}}>
+        <Link to={{pathname: "/MyPrescriptionInventory"}}>
           <Button color="red" inverted>
             <Icon name="cancel" /> Close
           </Button>
