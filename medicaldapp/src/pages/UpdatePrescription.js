@@ -55,11 +55,6 @@ class UpdatePrescription extends Component {
   };
 
   render() {
-      let shipDate = new Date(0);
-      shipDate.setSeconds(this.props.location.prescriptionShipDate);
-      let timeString = shipDate.toString().substr(0, 25);
-      let ownerString = this.props.userAddress.substr(0,10) + "......" + this.props.userAddress.substr(30,this.props.userAddress.length);
-      console.log("get the value: " + this.props.location.state.quantity);
     return (
       <div>
         *<Header icon="browser" content="Please give me a WORTHY name!!" />
@@ -69,17 +64,14 @@ class UpdatePrescription extends Component {
                 <PrescriptionCard
                     prescriptionId={this.props.location.state.prescriptionId}
                     prescriptionName={this.props.location.state.prescriptionName}
-                    prescriptionQuantity={this.props.location.state.prescriptionQuantity}
-                    prescriptionShipDate={timeString}
+                    prescriptionQuantity={10}
+                    prescriptionShipDate={this.props.location.state.prescriptionShipDate}
                     prescriptionOrigin={this.props.location.state.prescriptionOrigin}
                     prescriptionDestination={this.props.location.state.prescriptionDestination}
                     prescriptionStatus={this.props.location.state.prescriptionStatus}
-                    prescriptionOwner={ownerString}
+                    prescriptionOwner={this.props.userAddress}
                     myOwner={false}
                 />
-            </th>
-            <th>
-              <img src="static/images/nametag.jpg" alt="name tag" />
             </th>
           </tr>
         </table>

@@ -14,7 +14,7 @@ class Greeting extends Component {
         <br />
         <h2 style={{ color: "Black", textAlign: "center" }}>
           {" "}
-          Welcome to Jon and Conors <b> Blockchain</b> project
+          Welcome to Jonathan and Conor's <b> Blockchain</b> project
         </h2>
         <br />
         <img src={logo} style={imgStyle} width="400px" alt="Medical icon" />
