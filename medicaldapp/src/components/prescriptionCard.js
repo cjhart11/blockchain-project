@@ -35,48 +35,44 @@ class PrescriptionCard extends Component {
         </div>
     );
 
-    if (this.props.myOwner)
+    if (this.props.myOwner) {
       // Owner prescription: render card and tooltip and modal for prescription actions
 
       return (
-        <Card style={{ backgroundColor: "LightGreen" }} raised>
-          <ReactTooltip delayShow={400} />
+          <Card style={{backgroundColor: "LightGreen"}}
+                href="javascript:;"
+                data-tip="Click on me to view actions for this prescription"
+                onClick={e => this.modalOpen(e)}>
+            <ReactTooltip delayShow={400}/>
+            <PrescriptionCardContent prescription={this.props}/>
+            {/* a modal is like an "alert", it's a popup that greys out the lower screen and displays its content on top of everything */}
 
-          <a
-            href="javascript:;"
-            data-tip="Click on me to view actions for this prescription"
-            onClick={e => this.modalOpen(e)}
-          >
-            <PrescriptionCardContent prescription={this.props} />
-          </a>
-
-          {/* a modal is like an "alert", it's a popup that greys out the lower screen and displays its content on top of everything */}
-
-          <Modal open={this.state.modalOpen} onClose={this.handleClose}>
-            <Header
-              icon="browser"
-              content="Options for this prescription"
-            />
-            <Modal.Actions>
-              <ActionButton
-                  pathname="/UpdatePrescription"
-                  buttonLabel={changePrescriptionButton}
-                  data={this.props}
+            <Modal open={this.state.modalOpen} onClose={this.handleClose}>
+              <Header
+                  icon="browser"
+                  content="Options for this prescription"
               />
-              <Button color="red" onClick={this.handleClose} inverted>
-                <Icon name="cancel" /> Close
-              </Button>
-            </Modal.Actions>
-          </Modal>
-        </Card>
+              <Modal.Actions>
+                <ActionButton
+                    pathname="/UpdatePrescription"
+                    buttonLabel={changePrescriptionButton}
+                    data={this.props}
+                />
+                <Button color="red" onClick={this.handleClose}>
+                  <Icon name="cancel"/> Close
+                </Button>
+              </Modal.Actions>
+            </Modal>
+          </Card>
       );
-
-    else
+    }
+    else {
       return (
-        <Card style={{ backgroundColor: "LavenderBlush" }}>
-          <PrescriptionCardContent prescription={this.props} />
-        </Card>
+          <Card style={{backgroundColor: "LavenderBlush"}}>
+            <PrescriptionCardContent prescription={this.props}/>
+          </Card>
       );
+    }
   }
 }
 

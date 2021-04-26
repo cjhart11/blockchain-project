@@ -55,16 +55,17 @@ class UpdatePrescription extends Component {
   };
 
   render() {
+      console.log("the value we got: "+this.props.location.state.prescriptionQuantity);
     return (
       <div>
-        *<Header icon="browser" content="Please give me a WORTHY name!!" />
+        *<Header icon="browser" content="Update prescription information." />
         <table>
           <tr>
             <th>
                 <PrescriptionCard
                     prescriptionId={this.props.location.state.prescriptionId}
                     prescriptionName={this.props.location.state.prescriptionName}
-                    prescriptionQuantity={10}
+                    prescriptionQuantity={this.props.location.state.prescriptionQuantity}
                     prescriptionShipDate={this.props.location.state.prescriptionShipDate}
                     prescriptionOrigin={this.props.location.state.prescriptionOrigin}
                     prescriptionDestination={this.props.location.state.prescriptionDestination}

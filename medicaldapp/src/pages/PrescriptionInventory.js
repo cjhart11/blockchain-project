@@ -65,13 +65,13 @@ class PrescriptionInventory extends Component {
           <PrescriptionCard
             prescriptionId={prescription.pid}
             prescriptionName={prescription.name}
-            prescriptionQuantity={prescription.quantity}
+            prescriptionQuantity={parseInt(prescription.quantity)}
             prescriptionShipDate={prescription.shipDate}
             prescriptionOrigin={prescription.origin}
             prescriptionDestination={prescription.destination}
             prescriptionStatus={prescription.status}
             prescriptionOwner={prescription.owner.toString()}
-            myOwner={true}
+            myOwner={this.props.userAddress === zOwner[i]}
           />
         );
     }
