@@ -33,24 +33,34 @@ class CreatePrescription extends Component {
 
   onSubmit = async event => {
     event.preventDefault();
-    this.setState({
-      loading: true,
-      errorMessage: "",
-      message: "waiting for blockchain transaction to complete..."
-    });
-    try {
-      await this.props.CZ.createPrescriptionAll(this.state.name, this.state.quantity, this.state.origin, this.state.destination, this.state.status);
-      this.setState({
-        loading: false,
-        message: "You have created a prescription"
-      });
-      //await getPrescriptionCount(this.props.CZ, this.props.userAddress);
-    } catch (err) {
-      this.setState({
-        loading: false,
-        errorMessage: err.message,
-        message: "User rejected transaction or else this account is already in use, please try another name."
-      });
+
+    if(this.state.name === "" || this.state.origin === "" || this.state.destination === "" || this.state.status === "" || this.state.quantity === 0){
+        this.setState({
+              loading: false,
+              errorMessage: "Please fill in all information to create a new prescription",
+              message: ""
+            });
+    }
+    else{
+        this.setState({
+          loading: true,
+          errorMessage: "",
+          message: "Waiting for metamask to complete transaction"
+        });
+        try {
+          await this.props.CZ.createPrescriptionAll(this.state.name, this.state.quantity, this.state.origin, this.state.destination, this.state.status);
+          this.setState({
+            loading: false,
+            message: "You have created a prescription"
+          });
+          //await getPrescriptionCount(this.props.CZ, this.props.userAddress);
+        } catch (err) {
+          this.setState({
+            loading: false,
+            errorMessage: err.message,
+            message: "An error occurred during the transaction"
+          });
+        }
     }
   };
 
@@ -66,9 +76,9 @@ class CreatePrescription extends Component {
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >
-        <Header icon="browser" content="Add a new prescription for tracking" />
+        <Header icon="browser" content="Create a new prescription for tracking" />
         <Modal.Content>
-          <img src={logo} alt="pill icon" /><Header>Please give all of the information</Header>
+          <img src={logo} alt="pill icon" /><Header>Please fill in all information</Header>
           <br /> <br />
           <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
             <Form.Field>

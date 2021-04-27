@@ -33,7 +33,6 @@ class MyPrescriptionInventory extends Component {
   };
   makePrescriptionCards = async () => {
     const myPrescriptions = await this.props.CZ.getPrescriptionsByOwner(this.props.userAddress);
-    console.log("Getting Prescriptions by owner");
     let loopi = 0;
     while (loopi < myPrescriptions.length){
         console.log(myPrescriptions[loopi]);
@@ -75,31 +74,31 @@ class MyPrescriptionInventory extends Component {
     return (
       <div>
         <hr />
-        <h2> Your prescription Inventory </h2>
+        <h2> Your Prescription Inventory </h2>
         <hr />
-        <Grid columns={2} verticalAlign="middle">
-          <Grid.Column>
-            <Segment secondary>
-              <div>activePage: {this.state.activePage}</div>
-              <Input
-                min={1}
-                max={this.state.totalPages}
-                onChange={this.handleInputChange}
-                type="range"
-                value={this.state.activePage}
-              />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column>
-            <Pagination
-              activePage={this.state.activePage}
-              onPageChange={this.onChange}
-              totalPages={this.state.totalPages}
-            />
-          </Grid.Column>
-        </Grid>
         <br /> <br />
         <Card.Group> {this.state.prescriptionTable} </Card.Group>
+        <Grid columns={2} verticalAlign="middle">
+                  <Grid.Column>
+                    <Segment secondary>
+                      <div>activePage: {this.state.activePage}</div>
+                      <Input
+                        min={1}
+                        max={this.state.totalPages}
+                        onChange={this.handleInputChange}
+                        type="range"
+                        value={this.state.activePage}
+                      />
+                    </Segment>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Pagination
+                      activePage={this.state.activePage}
+                      onPageChange={this.onChange}
+                      totalPages={this.state.totalPages}
+                    />
+                  </Grid.Column>
+                </Grid>
       </div>
     );
   }

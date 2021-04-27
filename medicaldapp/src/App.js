@@ -10,7 +10,6 @@ import Greeting from "./pages/Greeting";
 import MyPrescriptionInventory from "./pages/MyPrescriptionInventory";
 import getPrescriptionCount from "./utils/getPrescriptionCount"
 import PrescriptionInventory from "./pages/PrescriptionInventory"
-//import TransferZombie from "./pages/TransferZombie";
 import UpdatePrescription from "./pages/UpdatePrescription";
 import PrescriptionSearch from "./pages/PrescriptionInventory";
 
@@ -33,7 +32,7 @@ class App extends Component {
     componentDidMount = async () => {
       try {
           const CZInfo = await initBlockchain(); // from utils directory;  connect to provider and to metamask or other signer
-          await getPrescriptionCount(CZInfo.CZ, CZInfo.userAddress); // get user count and total count of zombies
+          await getPrescriptionCount(CZInfo.CZ, CZInfo.userAddress);
       } catch (error) {
           // Catch any errors for any of the above operations.
           alert(`Failed to load provider, signer, or contract. Check console for details.`);

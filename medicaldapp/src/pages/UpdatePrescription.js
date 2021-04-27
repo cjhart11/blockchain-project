@@ -67,7 +67,7 @@ class UpdatePrescription extends Component {
     this.setState({
       loadingQuant: true,
       errorMessage: "",
-      message: "waiting for blockchain transaction to complete..."
+      message: "Waiting for metamask to complete transaction"
     });
     try {
       await this.props.CZ.updatePrescriptionQuantity(this.state.prescriptionId, this.state.quantity)
@@ -89,7 +89,7 @@ class UpdatePrescription extends Component {
     this.setState({
       loadingOrigin: true,
       errorMessage: "",
-      message: "waiting for blockchain transaction to complete..."
+      message: "Waiting for metamask to complete transaction"
     });
     try {
       await this.props.CZ.updatePrescriptionOrigin(this.state.prescriptionId, this.state.origin)
@@ -111,7 +111,7 @@ class UpdatePrescription extends Component {
     this.setState({
       loadingDestination: true,
       errorMessage: "",
-      message: "waiting for blockchain transaction to complete..."
+      message: "Waiting for metamask to complete transaction"
     });
     try {
       await this.props.CZ.updatePrescriptionDestination(this.state.prescriptionId, this.state.destination)
@@ -133,7 +133,7 @@ class UpdatePrescription extends Component {
     this.setState({
       loadingStatus: true,
       errorMessage: "",
-      message: "waiting for blockchain transaction to complete..."
+      message: "Waiting for metamask to complete transaction"
     });
     try {
       await this.props.CZ.updatePrescriptionStatus(this.state.prescriptionId, this.state.status)
@@ -151,7 +151,6 @@ class UpdatePrescription extends Component {
   };
 
   render() {
-      console.log("the value we got: "+this.props.location.state.prescriptionQuantity);
     return (
       <div>
         <Header icon="browser" content="Update prescription information." />
@@ -185,7 +184,7 @@ class UpdatePrescription extends Component {
               }
             />
           </Form.Field>
-          <Message error header="Oops!" content={this.state.errorMessage} />
+          <Message error header="Whoops!" content={this.state.errorMessage} />
           <Button primary type="submit" loading={this.state.loading}>
             <Icon name="check" />
             Change Name
@@ -204,7 +203,7 @@ class UpdatePrescription extends Component {
                 }
             />
           </Form.Field>
-          <Message error header="Oops!" content={this.state.errorMessage} />
+          <Message error header="Whoops!" content={this.state.errorMessage} />
           <Button primary type="submit" loading={this.state.loadingQuant}>
             <Icon name="check" />
             Change Quantity
@@ -223,7 +222,7 @@ class UpdatePrescription extends Component {
                 }
             />
           </Form.Field>
-          <Message error header="Oops!" content={this.state.errorMessage} />
+          <Message error header="Whoops!" content={this.state.errorMessage} />
           <Button primary type="submit" loading={this.state.loadingOrigin}>
             <Icon name="check" />
             Change Origin
@@ -242,7 +241,7 @@ class UpdatePrescription extends Component {
                 }
             />
           </Form.Field>
-          <Message error header="Oops!" content={this.state.errorMessage} />
+          <Message error header="Whoops!" content={this.state.errorMessage} />
           <Button primary type="submit" loading={this.state.loadingDestination}>
             <Icon name="check" />
             Change Destination
@@ -261,7 +260,7 @@ class UpdatePrescription extends Component {
                 }
             />
           </Form.Field>
-          <Message error header="Oops!" content={this.state.errorMessage} />
+          <Message error header="Whoops!" content={this.state.errorMessage} />
           <Button primary type="submit" loading={this.state.loadingStatus}>
             <Icon name="check" />
             Change Status
