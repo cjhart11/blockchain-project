@@ -151,7 +151,7 @@ class UpdatePrescription extends Component {
   };
 
   render() {
-      console.log("the value we got: "+this.props.location.state.prescriptionQuantity);
+      console.log("the Prescription Quantity we got: "+ this.props.location.state.prescriptionQuantity);
     return (
       <div>
         <Header icon="browser" content="Update prescription information." />

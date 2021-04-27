@@ -15,7 +15,14 @@ class MyPrescriptionInventory extends Component {
   state = {
     PrescriptionTable: [],
     activePage: 1,
-    totalPages: Math.ceil(this.props.userPrescriptionCount / 9)
+    totalPages: Math.ceil(this.props.userPrescriptionCount / 9),
+    choices: [{label: "ID", value: "ID"},
+              {label: "ShipDate", value: "ShipDate"},
+              {label: "Origin", value: "Origin"},
+              {label: "Destination", value: "Destination"},
+              {label: "Status", value: "Status"},
+              {label: "Owner", value: "Owner"}],
+    selectedChoice: ""
   };
 
   componentDidMount = async () => {
@@ -31,6 +38,14 @@ class MyPrescriptionInventory extends Component {
     await this.setState({ activePage: value });
     this.makePrescriptionCards();
   };
+
+  handleFilterChange = async (e) => {
+    await this.setState({ selectedChoice: e.target.value });
+    console.log("Selected filter is " + this.state.selectedChoice);
+    this.makePrescriptionCards();
+  }
+
+
   makePrescriptionCards = async () => {
     const myPrescriptions = await this.props.CZ.getPrescriptionsByOwner(this.props.userAddress);
     console.log("Getting Prescriptions by owner");
@@ -98,6 +113,13 @@ class MyPrescriptionInventory extends Component {
             />
           </Grid.Column>
         </Grid>
+        <br /> <br />
+        <div>
+        <select onChange={this.handleFilterChange}>
+            <option value = "Select a filter"> -- Select a filter -- </option>
+            {this.state.choices.map((choice) => <option value={choice.value}>{choice.label} </option>)}
+        </select>
+        </div>
         <br /> <br />
         <Card.Group> {this.state.prescriptionTable} </Card.Group>
       </div>

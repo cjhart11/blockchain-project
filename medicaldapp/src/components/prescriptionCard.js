@@ -56,6 +56,7 @@ class PrescriptionCard extends Component {
                 <ActionButton
                     pathname="/UpdatePrescription"
                     buttonLabel={changePrescriptionButton}
+                    location={this.props}
                     data={this.props}
                 />
                 <Button color="red" onClick={this.handleClose}>
