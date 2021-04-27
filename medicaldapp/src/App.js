@@ -10,7 +10,6 @@ import Greeting from "./pages/Greeting";
 import MyPrescriptionInventory from "./pages/MyPrescriptionInventory";
 import getPrescriptionCount from "./utils/getPrescriptionCount"
 import PrescriptionInventory from "./pages/PrescriptionInventory"
-//import TransferZombie from "./pages/TransferZombie";
 import UpdatePrescription from "./pages/UpdatePrescription";
 import PrescriptionSearch from "./pages/PrescriptionInventory";
 
