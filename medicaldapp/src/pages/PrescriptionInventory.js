@@ -155,7 +155,7 @@ class PrescriptionInventory extends Component {
     return (
       <div>
         <hr />
-        <h2> Search Prescription Inventory </h2>
+        <h2> Search Entire Prescription Inventory </h2>
         <h2>
           <Form>
             <Form.Field>

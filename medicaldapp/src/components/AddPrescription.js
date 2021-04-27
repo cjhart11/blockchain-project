@@ -33,24 +33,34 @@ class CreatePrescription extends Component {
 
   onSubmit = async event => {
     event.preventDefault();
-    this.setState({
-      loading: true,
-      errorMessage: "",
-      message: "Waiting for metamask to complete transaction"
-    });
-    try {
-      await this.props.CZ.createPrescriptionAll(this.state.name, this.state.quantity, this.state.origin, this.state.destination, this.state.status);
-      this.setState({
-        loading: false,
-        message: "You have created a prescription"
-      });
-      //await getPrescriptionCount(this.props.CZ, this.props.userAddress);
-    } catch (err) {
-      this.setState({
-        loading: false,
-        errorMessage: err.message,
-        message: "An error occurred during the transaction"
-      });
+
+    if(this.state.name === "" || this.state.origin === "" || this.state.destination === "" || this.state.status === "" || this.state.quantity === 0){
+        this.setState({
+              loading: false,
+              errorMessage: "Please fill in all information to create a new prescription",
+              message: ""
+            });
+    }
+    else{
+        this.setState({
+          loading: true,
+          errorMessage: "",
+          message: "Waiting for metamask to complete transaction"
+        });
+        try {
+          await this.props.CZ.createPrescriptionAll(this.state.name, this.state.quantity, this.state.origin, this.state.destination, this.state.status);
+          this.setState({
+            loading: false,
+            message: "You have created a prescription"
+          });
+          //await getPrescriptionCount(this.props.CZ, this.props.userAddress);
+        } catch (err) {
+          this.setState({
+            loading: false,
+            errorMessage: err.message,
+            message: "An error occurred during the transaction"
+          });
+        }
     }
   };
 
