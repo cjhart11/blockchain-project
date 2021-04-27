@@ -3,6 +3,7 @@ import { Icon, Card, Header, Modal, Button } from "semantic-ui-react";
 import ReactTooltip from "react-tooltip";
 import ActionButton from "./ActionButton";
 import PrescriptionCardContent from "./prescriptionCardContent";
+import {Link} from "react-router-dom";
 
 class PrescriptionCard extends Component {
   state = {
@@ -58,7 +59,7 @@ class PrescriptionCard extends Component {
                     buttonLabel={changePrescriptionButton}
                     data={this.props}
                 />
-                <Button color="red" onClick={this.handleClose}>
+                <Button color="red" onClick={this.handleClose} inverted>
                   <Icon name="cancel"/> Close
                 </Button>
               </Modal.Actions>
