@@ -49,6 +49,26 @@ contract PrescriptionFactory is Ownable {
         return prescriptions[_tokenId].name;// not sure if this is correct
     }
 
+    function findNameWithId(uint256 _tokenId) external view returns (string memory) {
+        return prescriptions[_tokenId].name;// not sure if this is correct
+    }
+
+    function findQuantityWithId(uint256 _tokenId) external view returns (uint) {
+        return prescriptions[_tokenId].quantity;// not sure if this is correct
+    }
+
+    function findOriginWithId(uint256 _tokenId) external view returns (string memory) {
+        return prescriptions[_tokenId].origin;// not sure if this is correct
+    }
+
+    function findDestinationWithId(uint256 _tokenId) external view returns (string memory) {
+        return prescriptions[_tokenId].destination;// not sure if this is correct
+    }
+
+    function findStatusWithId(uint256 _tokenId) external view returns (string memory) {
+        return prescriptions[_tokenId].status;// not sure if this is correct
+    }
+
     function getPrescriptionsByOwner(address _owner) external view returns(uint[] memory) {
         uint[] memory result = new uint[](ownerPrescriptionCount[_owner]);
         uint counter = 0;
@@ -59,6 +79,31 @@ contract PrescriptionFactory is Ownable {
             }
         }
         return result;
+    }
+
+    function withdraw() external onlyOwner {
+        address payable _owner = address(uint160(owner()));
+        _owner.transfer(address(this).balance);
+    }
+
+    function updatePrescriptionName(uint256 _tokenId, string calldata _newName) external onlyOwnerOf(_tokenId){
+        prescriptions[_tokenId].name = _newName;
+    }
+
+    function updatePrescriptionQuantity(uint256 _tokenId, uint _newQuantity) external onlyOwnerOf(_tokenId){
+        prescriptions[_tokenId].quantity = _newQuantity;
+    }
+
+    function updatePrescriptionOrigin(uint256 _tokenId, string calldata _newOrigin) external onlyOwnerOf(_tokenId){
+        prescriptions[_tokenId].origin = _newOrigin;
+    }
+
+    function updatePrescriptionDestination(uint256 _tokenId, string calldata _newDestination) external onlyOwnerOf(_tokenId){
+        prescriptions[_tokenId].destination = _newDestination;
+    }
+
+    function updatePrescriptionStatus(uint256 _tokenId, string calldata _newStatus) external onlyOwnerOf(_tokenId){
+        prescriptions[_tokenId].status = _newStatus;
     }
 
 }

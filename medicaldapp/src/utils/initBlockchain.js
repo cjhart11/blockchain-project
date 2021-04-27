@@ -48,7 +48,7 @@ const initBlockchain = async () => {
 
     let abi = parsed.abi;
 
-    CZ = new ethers.Contract('0x47111fAEc885AED52726CfcDE57fbE5a74341747', abi, signer);
+    CZ = new ethers.Contract('0xdfdF25fEDC77e9069d043Db1D02143C226865043', abi, signer);
     // put state data into the REDUX store for easy access from other pages and components
 
     let data = { provider, signer, CZ, userAddress };

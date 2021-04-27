@@ -97,8 +97,53 @@ describe("Cryptoprescription", function () {
         it("should return the name of the prescription give the prescription id" , async () => {
             const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
             const prescriptionId = 0;
-            const name = await CZInstance.findWithId(prescriptionId);
+            const name = await CZInstance.findNameWithId(prescriptionId);
             expect(name).to.equal(prescriptionNames[0]);
+        })
+
+        it("should allow owner of a prescription to change name" , async () => {
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            const newName = "updated";
+            await CZInstance.updatePrescriptionName(prescriptionId, newName);
+            const name = await CZInstance.findNameWithId(prescriptionId);
+            expect(name).to.equal(newName);
+        })
+
+        it("should allow owner of a prescription to change quantity" , async () => {
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            const newQuantity = 2730;
+            await CZInstance.updatePrescriptionQuantity(prescriptionId, newQuantity);
+            const quantity = await CZInstance.findQuantityWithId(prescriptionId);
+            expect(quantity).to.equal(newQuantity);
+        })
+
+        it("should allow owner of a prescription to change origin" , async () => {
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            const newOrigin = "space";
+            await CZInstance.updatePrescriptionOrigin(prescriptionId, newOrigin);
+            const origin = await CZInstance.findOriginWithId(prescriptionId);
+            expect(origin).to.equal(newOrigin);
+        })
+
+        it("should allow owner of a prescription to change destination" , async () => {
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            const newDestination = "earth";
+            await CZInstance.updatePrescriptionDestination(prescriptionId, newDestination);
+            const destination = await CZInstance.findDestinationWithId(prescriptionId);
+            expect(destination).to.equal(newDestination);
+        })
+
+        it("should allow owner of a prescription to change status" , async () => {
+            const result = await CZInstance.createPrescriptionAll(prescriptionNames[0], 10, "location one", "location two" , "shipped");
+            const prescriptionId = 0;
+            const newStatus = "delivered";
+            await CZInstance.updatePrescriptionStatus(prescriptionId, newStatus);
+            const status = await CZInstance.findStatusWithId(prescriptionId);
+            expect(status).to.equal(newStatus);
         })
     })
 
