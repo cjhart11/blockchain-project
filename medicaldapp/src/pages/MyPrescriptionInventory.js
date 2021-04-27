@@ -74,7 +74,7 @@ class MyPrescriptionInventory extends Component {
     return (
       <div>
         <hr />
-        <h2> Your prescription Inventory </h2>
+        <h2> Your Prescription Inventory </h2>
         <hr />
         <br /> <br />
         <Card.Group> {this.state.prescriptionTable} </Card.Group>
