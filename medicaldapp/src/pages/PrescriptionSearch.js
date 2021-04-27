@@ -17,28 +17,37 @@ function mapStateToProps(state) {
   };
 }
 
-const options = [
-  { text: "ID", value: "ID" },
-  { text: "Name", value: "Name" },
-  { text: "Quantity", value: "Quantity" },
-  { text: "Ship Date", value: "Ship Date" },
-  { text: "Origin", value: "Origin" },
-  { text: "Destination", value: "Destination" },
-  { text: "Status", value: "Status" },
-  { text: "Owner", value: "Owner" }
-];
 class PrescriptionSearch extends Component {
   state = {
     PrescriptionTable: [],
     activePage: 1,
     totalPages: Math.ceil(this.props.totalPrescriptionCount / 9),
-    options,
-    selectedChoice: "ID"
+    choices: [
+      { label: "ID", value: "ID" },
+      { label: "Name", value: "Name" },
+      { label: "Quantity", value: "Quantity" },
+      { label: "Ship Date", value: "Ship Date" },
+      { label: "Origin", value: "Origin" },
+      { label: "Destination", value: "Destination" },
+      { label: "Status", value: "Status" },
+      { label: "Owner", value: "Owner" }],
+    searchValue: null,
+    selectedChoice: ""
   };
 
   componentDidMount = async () => {
     await this.makePrescriptionCards();
   };
+
+  handleFilterChange = async (e) => {
+    await this.setState({selectedChoice: e.target.value});
+    this.makePrescriptionCards();
+  }
+
+  handleSearchChange = async (e) => {
+    await this.setState({searchValue: e.target.value});
+    this.makePrescriptionCards();
+  }
 
   onChange = async (e, pageInfo) => {
     await this.setState({ activePage: pageInfo.activePage });
@@ -48,6 +57,56 @@ class PrescriptionSearch extends Component {
   handleInputChange = async (e, { value }) => {
       await this.setState({ activePage: value });
       this.makePrescriptionCards();
+  }
+
+  prescriptionSearch(prescription) {
+    if (this.state.searchValue === null){
+      return true;
+    }
+    if (this.state.selectedChoice === "ID"){
+      if (prescription.pid.toString().toUpperCase().includes(this.state.searchValue.toUpperCase())){
+        return true;
+      }
+    }
+    if (this.state.selectedChoice === "Name"){
+      if (prescription.name.toString().toUpperCase().includes(this.state.searchValue.toUpperCase())){
+        return true;
+      }
+    }
+    if (this.state.selectedChoice === "Quantity"){
+      if (prescription.quantity.toString() === this.state.searchValue){
+        return true;
+      }
+    }
+    if (this.state.selectedChoice === "Ship Date"){
+      let shipDate = new Date(0);
+      shipDate.setSeconds(prescription.shipDate);
+      let timeString = shipDate.toString().substr(0, 25);
+      if (timeString.toUpperCase().includes(this.state.searchValue.toUpperCase())){
+        return true;
+      }
+    }
+    if (this.state.selectedChoice === "Origin"){
+      if (prescription.origin.toString().toUpperCase().includes(this.state.searchValue.toUpperCase())){
+        return true;
+      }
+    }
+    if (this.state.selectedChoice === "Destination"){
+      if (prescription.destination.toString().toUpperCase().includes(this.state.searchValue.toUpperCase())){
+        return true;
+      }
+    }
+    if (this.state.selectedChoice === "Status"){
+      if (prescription.status.toString().toUpperCase().includes(this.state.searchValue.toUpperCase())){
+        return true;
+      }
+    }
+    if (this.state.selectedChoice === "Owner"){
+      if (prescription.owner.toString() === this.state.searchValue){
+        return true;
+      }
+    }
+    return false;
   }
 
   makePrescriptionCards = async () => {
@@ -72,19 +131,22 @@ class PrescriptionSearch extends Component {
     for (let i = 0; i < zList.length; i++) {
       let myDate = new Date(zList[i].readyTime * 1000).toLocaleString();
       let prescription = zList[i];
+      if (this.prescriptionSearch(prescription)){
         prescriptionTable.push(
-          <PrescriptionCard
-            prescriptionId={prescription.pid}
-            prescriptionName={prescription.name}
-            prescriptionQuantity={parseInt(prescription.quantity)}
-            prescriptionShipDate={prescription.shipDate}
-            prescriptionOrigin={prescription.origin}
-            prescriptionDestination={prescription.destination}
-            prescriptionStatus={prescription.status}
-            prescriptionOwner={prescription.owner.toString()}
-            myOwner={this.props.userAddress === zOwner[i]}
-          />
+            <PrescriptionCard
+                prescriptionId={prescription.pid}
+                prescriptionName={prescription.name}
+                prescriptionQuantity={parseInt(prescription.quantity)}
+                prescriptionShipDate={prescription.shipDate}
+                prescriptionOrigin={prescription.origin}
+                prescriptionDestination={prescription.destination}
+                prescriptionStatus={prescription.status}
+                prescriptionOwner={prescription.owner.toString()}
+                myOwner={this.props.userAddress === zOwner[i]}
+            />
         );
+      }
+
     }
     this.setState({ prescriptionTable });
   };
@@ -99,18 +161,13 @@ class PrescriptionSearch extends Component {
             <Form.Field>
               <input
                   placeholder="Search"
-                  onChange={event =>
-                      this.setState({
-                        searchValue: event.target.value
-                      })
-                  }
+                  onChange={this.handleSearchChange}
               />
             </Form.Field>
-            <Dropdown
-                placeholder={"Select search criteria"}
-                options={options}
-                value={this.state.selectedChoice}
-                onChange={(e) => this.setState({selectedChoice: e.target.value})}/>
+            <select onChange={this.handleFilterChange}>
+              <option value = "select search criteria"> -- Select a search criteria --</option>
+              {this.state.choices.map((choice) => <option value ={choice.value}>{choice.label}</option>)}
+            </select>
           </Form>
         </h2>
         <hr />
@@ -142,6 +199,8 @@ class PrescriptionSearch extends Component {
       </div>
     );
   }
+
+
 }
 
 export default connect(mapStateToProps)(PrescriptionSearch);
