@@ -171,31 +171,31 @@ class PrescriptionInventory extends Component {
           </Form>
         </h2>
         <hr />
-        <Grid columns={2} verticalAlign="middle">
-          <Grid.Column>
-            <Segment secondary>
-              <div>activePage: {this.state.activePage}</div>
-              <Input
-                min={1}
-                max={this.state.totalPages}
-                onChange={this.handleInputChange}
-                type="range"
-                value={this.state.activePage}
-              />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column>
-            <Pagination
-              activePage={this.state.activePage}
-              onPageChange={this.onChange}
-              totalPages={this.state.totalPages}
-            />
-          </Grid.Column>
-        </Grid>
         <br /> <br />
         <div>
           <Card.Group>{this.state.prescriptionTable}</Card.Group>
         </div>
+          <Grid columns={2} verticalAlign="middle">
+                  <Grid.Column>
+                    <Segment secondary>
+                      <div>activePage: {this.state.activePage}</div>
+                      <Input
+                        min={1}
+                        max={this.state.totalPages}
+                        onChange={this.handleInputChange}
+                        type="range"
+                        value={this.state.activePage}
+                      />
+                    </Segment>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Pagination
+                      activePage={this.state.activePage}
+                      onPageChange={this.onChange}
+                      totalPages={this.state.totalPages}
+                    />
+                  </Grid.Column>
+                </Grid>
       </div>
     );
   }

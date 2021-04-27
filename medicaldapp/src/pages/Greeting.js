@@ -20,7 +20,7 @@ class Greeting extends Component {
         <img src={logo} style={imgStyle} width="400px" alt="Medical icon" />
         <br /> <br />
         <p style={{ textAlign: "center" }}>
-          This project allows for the creation of a prescription
+          This project allows for the creation of a prescription to be added into a supply chain
           <br /> <br /> To get started, select a button from the menu bar above.
         </p>
       </div>

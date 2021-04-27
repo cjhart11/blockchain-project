@@ -24,6 +24,11 @@ class TopBar extends Component {
       <div>
         <Menu style={{ marginTop: "10px", backgroundColor: "Green" }}>
           <Menu.Item>
+            <Link to={{ pathname: "/" }}>
+              <Button primary>Main Page</Button>
+            </Link>
+          </Menu.Item>
+          <Menu.Item>
             <AddPrescription />
           </Menu.Item>
           <Menu.Item>
@@ -34,11 +39,6 @@ class TopBar extends Component {
             <Menu.Item>
                 <Link to={{ pathname: "/PrescriptionInventory" }}>
                     <Button primary>Show All Prescriptions</Button>
-                </Link>
-            </Menu.Item>
-            <Menu.Item>
-                <Link to={{ pathname: "/" }}>
-                    <Button primary>Main Page</Button>
                 </Link>
             </Menu.Item>
         </Menu>

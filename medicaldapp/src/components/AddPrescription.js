@@ -36,7 +36,7 @@ class CreatePrescription extends Component {
     this.setState({
       loading: true,
       errorMessage: "",
-      message: "waiting for blockchain transaction to complete..."
+      message: "Waiting for metamask to complete transaction"
     });
     try {
       await this.props.CZ.createPrescriptionAll(this.state.name, this.state.quantity, this.state.origin, this.state.destination, this.state.status);
@@ -49,7 +49,7 @@ class CreatePrescription extends Component {
       this.setState({
         loading: false,
         errorMessage: err.message,
-        message: "User rejected transaction or else this account is already in use, please try another name."
+        message: "An error occurred during the transaction"
       });
     }
   };
@@ -66,9 +66,9 @@ class CreatePrescription extends Component {
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >
-        <Header icon="browser" content="Add a new prescription for tracking" />
+        <Header icon="browser" content="Create a new prescription for tracking" />
         <Modal.Content>
-          <img src={logo} alt="pill icon" /><Header>Please give all of the information</Header>
+          <img src={logo} alt="pill icon" /><Header>Please fill in all information</Header>
           <br /> <br />
           <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
             <Form.Field>
