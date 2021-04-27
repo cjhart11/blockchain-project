@@ -37,11 +37,6 @@ class TopBar extends Component {
                 </Link>
             </Menu.Item>
             <Menu.Item>
-                <Link to={{ pathname: "/PrescriptionSearch" }}>
-                    <Button primary>Search Prescriptions</Button>
-                </Link>
-            </Menu.Item>
-            <Menu.Item>
                 <Link to={{ pathname: "/" }}>
                     <Button primary>Main Page</Button>
                 </Link>

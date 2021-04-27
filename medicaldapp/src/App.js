@@ -12,7 +12,7 @@ import getPrescriptionCount from "./utils/getPrescriptionCount"
 import PrescriptionInventory from "./pages/PrescriptionInventory"
 //import TransferZombie from "./pages/TransferZombie";
 import UpdatePrescription from "./pages/UpdatePrescription";
-import PrescriptionSearch from "./pages/PrescriptionSearch";
+import PrescriptionSearch from "./pages/PrescriptionInventory";
 
 import store from "./redux/store";
 
@@ -74,11 +74,6 @@ class App extends Component {
                     exact
                     path="/UpdatePrescription"
                     component={UpdatePrescription}
-                />
-                <Route
-                    exact
-                    path="/PrescriptionSearch"
-                    component={PrescriptionSearch}
                 />
             </div>
           </Container>
